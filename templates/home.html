@@ -1,0 +1,158 @@
+{% block content %}
+<style>
+  .home-wrapper {
+    position: relative;
+    bottom: -200px;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-image: url("{{ url_for('static', filename='images/image_for_home.avif') }}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    overflow: hidden;
+  }
+
+  .home-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+    border-radius: 16px;
+    z-index: 0;
+  }
+
+  .home-content,
+  .top-buttons,
+  .home-buttons {
+    position: relative;
+    z-index: 1;
+  }
+
+  .top-buttons {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 10;
+  }
+
+  .top-buttons a {
+    margin-left: 10px;
+    padding: 0.6rem 1rem;
+    background-color: #527640;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .top-buttons a:hover {
+    background-color: #1A3315;
+  }
+
+  .home-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .home-text {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .home-text h1 {
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .home-text p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    line-height: 1.6;
+  }
+
+  .home-image {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+  }
+
+  .home-image img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .home-image img:hover {
+    transform: scale(1.05);
+  }
+
+  .home-buttons {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .home-buttons a {
+    display: inline-block;
+    margin: 0.5rem 1rem;
+    padding: 0.8rem 1.4rem;
+    background-color: #527640;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .home-buttons a:hover {
+    background-color: #1A3315;
+  }
+</style>
+
+<div class="home-wrapper">
+
+  <!-- 🔒 Top Right Buttons -->
+  <div class="top-buttons">
+    {% if session['user_id'] %}
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('signup') }}">Sign Up</a>
+    {% endif %}
+  </div>
+
+  <div class="home-content">
+    <div class="home-text">
+      <h1>
+        {% if session['user_name'] %}
+          Welcome, {{ session['user_name'] }}!
+        {% else %}
+          Welcome to our Fertilizer Recommendation System!
+        {% endif %}
+      </h1>
+      <p>
+        Our intelligent Fertilizer Recommendation System helps farmers identify plant diseases through images and suggests the best fertilizers. 
+        Powered by AI and Deep Learning, it brings smarter agriculture to your fingertips.
+      </p>
+    </div>
+
+  <!-- 🌱 Main Navigation Buttons -->
+  {% if session['user_id'] %}
+  <div class="home-buttons">
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('models') }}">Models</a>
+    <a href="{{ url_for('fertilizer_info') }}">Fertilizer Info</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

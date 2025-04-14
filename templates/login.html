@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Fertilizer Recommendation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: url("{{ url_for('static', filename='images/image1.png') }}") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+    }
+
+    .left-panel, .right-panel {
+      flex: 1;
+      height: 100vh;
+      display: flex;
+    }
+
+    .left-panel {
+      color: white;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      flex-direction: column;
+    }
+
+    .left-text {
+      animation: fadeInUp 1.6s ease-out both;
+      text-align: left;
+      max-width: 600px;
+    }
+
+    .left-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #A5D6A7;
+    }
+
+    .left-text p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #e0e0e0;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .right-panel {
+      position: relative;
+      right: -200px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 30px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 420px;
+      color: #fff;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1a3315;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 1em;
+      border-radius: 6px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2e7d32;
+    }
+
+    .signup-link {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #fff;
+    }
+
+    .signup-link a {
+      color: #81C784;
+      text-decoration: none;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    li {
+      color: #ffcccb;
+    }
+
+    @media (max-width: 768px) {
+      html, body {
+        flex-direction: column;
+      }
+
+      .left-panel, .right-panel {
+        flex: none;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+      }
+
+      .left-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Side Description -->
+  <div class="left-panel">
+    <div class="left-text">
+      <h1>Smart Fertilizer Guide</h1>
+      <p>
+        Discover the perfect fertilizer for your crops based on soil type, plant health, and deficiency symptoms.
+        Our AI-powered recommendation system analyzes plant conditions and suggests the most effective organic or chemical fertilizers.
+        Improve your yield while maintaining soil health and sustainability.
+      </p>
+    </div>
+  </div>
+
+  <!-- Right Side Login Form -->
+  <div class="right-panel">
+    <div class="login-container">
+      <h2>Login</h2>
+      <form action="{{ url_for('login') }}" method="POST">
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+
+        <div class="signup-link">
+          Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for msg in messages %}
+                <li>{{ msg }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+{% block content %}
+<style>
+    .form-container {
+        position: relative;
+        bottom: -100px;
+        padding: 2rem;
+        max-width: 1000px;
+        margin: auto;
+        text-align: center;
+        color:#e0f2f1;
+        background-image: url("{{ url_for('static', filename='images/model2.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-container h2 {
+        color: #212510;
+        margin-bottom: 1rem;
+    }
+
+    input[type="file"], button {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 1rem;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+
+    input[type="file"] {
+        border: 1px solid #ccc;
+        background-color: white;
+    }
+
+    button {
+        background-color: #527640;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+    }
+
+    button:hover {
+        background-color: #1A3315;
+    }
+
+    .result-box {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background-color: #e0f2f1;
+        border-radius: 8px;
+        font-weight: bold;
+        color: #1A3315;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Model 2: Fertilizer recommendation</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="image_file">Upload Leaf Image</label>
+        <input type="file" name="image_file" id="image_file" accept="image/*" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+    <div class="result-box">
+        <p>Prediction Result: {{ result }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fertilizer Recommendation System</title>
+
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  
+  <!-- Font Awesome for Social Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    body {
+      background-color: black;
+      color: white;
+    }
+
+    nav {
+      height: 10vh;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      background-color: rgba(20, 143, 72, 0.8);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .logo span {
+      color: #000000;
+      text-shadow: 0 0 10px #654E30;
+    }
+
+    .nav-auto a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 1.2rem;
+    }
+
+    .main-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 5%;
+      min-height: 60vh;
+      background-color: black;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .main-container .image img,
+    .glow-img {
+      max-width: 500px;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(101, 78, 48, 0.7);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .glow-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(101, 78, 48, 1);
+    }
+
+    .main-container .text {
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .main-container .text h1,
+    .hover-glow {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #527640;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hover-glow:hover {
+      color: #654E30;
+      text-shadow: 0 0 10px #654E30, 0 0 20px #527640;
+      transform: scale(1.02);
+    }
+
+    .main-container .text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .animated-bg {
+      background: linear-gradient(-45deg, #000000, rgba(0, 0, 0, 0.8), #1A3315, #212510);
+      background-size: 400% 400%;
+      animation: waveBackground 15s ease infinite;
+      min-height: 10vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 5%;
+      text-align: center;
+    }
+
+    .animated-bg h1 {
+      font-size: 2.2rem;
+      color: white;
+    }
+
+    .animated-bg p {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      max-width: 700px;
+      color: #f0f0f0;
+    }
+
+    @keyframes waveBackground {
+      0% { background-position: 0 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      color: white;
+      text-decoration: none;
+      font-size: 2rem;
+      margin: 0 10px;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .social-icons a:hover {
+      color: #654E30;
+    }
+
+    @media screen and (max-width: 768px) {
+      .main-container,
+      .parallax {
+        flex-direction: column;
+        padding: 40px 5%;
+      }
+
+      .main-container .text,
+      .glass-card {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      Fertilizer <span>Recommendation</span>
+    </div>
+    <div class="nav-auto">
+      <!-- Correct way to link to login -->
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('signup') }}">Signup</a>
+    </div>
+  </nav>
+
+  <!-- First Section -->
+  <section class="main-container">
+    <div class="image" data-aos="fade-right">
+      <img src="{{ url_for('static', filename='images/main_image.png') }}" alt="Fertilizer System" />
+    </div>
+    <div class="text" data-aos="fade-left">
+      <h1 class="hover-glow">Fertilizer Recommendation System</h1>
+      <p>
+        In modern agriculture, optimal crop production heavily relies on balanced fertilization. Fertilizers play a crucial role in supplementing essential nutrients that are often deficient in the soil. However, misuse or overuse can reduce crop quality and pollute the environment. Our system smartly analyzes plant diseases and suggests the best fertilizers for sustainable farming.
+      </p>
+    </div>
+  </section>
+
+  <!-- ✅ Fixed Second Section (Image Right, Text Left) -->
+  <section class="main-container">
+    <div class="text" data-aos="fade-right">
+      <h1 class="hover-glow">Fertilizer</h1>
+      <p>
+        Fertilizers are substances that are added to soil or plants to provide essential nutrients that are necessary for healthy growth. These nutrients help plants to grow, develop, and produce better yields, especially when the soil is deficient in them. Fertilizers can be organic (e.g., compost, manure) or synthetic (chemical fertilizers).
+      </p>
+    </div>
+    <div class="image" data-aos="fade-left">
+      <img src="{{ url_for('static', filename='images/main_page.png') }}" alt="Fertilizer System" />
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <section class="animated-bg" data-aos="fade-up">
+    <div>
+      <p>@ Copy Right to Sai kanna</p>
+      <div class="social-icons">
+        <a href="www.linkedin.com/in/saikanna-notla" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+</body>
+</html>

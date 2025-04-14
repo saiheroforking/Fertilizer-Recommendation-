@@ -1,0 +1,114 @@
+{% block content %}
+<style>
+    .models-section {
+        position: relative;
+        bottom: -100px;
+        padding: 2rem;
+        max-width: 1000px;
+        margin: auto;
+        text-align: center;
+        color: white;
+        background-image: url("{{ url_for('static', filename='images/models.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .models-section::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        z-index: 0;
+        border-radius: 16px;
+    }
+
+    .models-section > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .models-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: #fff;
+    }
+
+    .model-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .model-card {
+        background-color: rgba(82, 118, 64, 0.9); /* semi-transparent */
+        color: #fff;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        width: 280px;
+        text-align: left;
+    }
+
+    .model-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .model-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        color: #C5E1A5;
+    }
+
+    .model-card p {
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .model-card a {
+        display: inline-block;
+        padding: 0.6rem 1rem;
+        background-color: #C5E1A5;
+        color: #212510;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .model-card a:hover {
+        background-color: #AED581;
+    }
+</style>
+
+<div class="models-section">
+    <h2>Select a Model</h2>
+
+    <div class="model-grid">
+        <!-- Model 1 -->
+        <div class="model-card">
+            <h3>🧠 Disease Detection</h3>
+            <p>Upload a plant image to detect diseases using a deep learning model.</p>
+            <a href="{{ url_for('model1') }}">Use Model</a>
+        </div>
+
+        <!-- Model 2 -->
+        <div class="model-card">
+            <h3>🧬 Fertilizer Recommendation</h3>
+            <p>Get the right fertilizer recommendation based on crop or disease info.</p>
+            <a href="{{ url_for('model2') }}">Use Model</a>
+        </div>
+
+        <!-- Model 3 -->
+        <div class="model-card">
+            <h3>⚡ Soil-Based Detection</h3>
+            <p>Analyze soil data (pH, nutrients) to detect imbalances and recommend action.</p>
+            <a href="{{ url_for('model3') }}">Use Model</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

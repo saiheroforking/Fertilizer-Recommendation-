@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .form-container {
+        position: relative;
+        background-color: #f2f2f2;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        max-width: 700px;
+        margin: 2rem auto;
+        bottom: -600px;
+    }
+
+    .form-container h2 {
+        color: #212510;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .form-container label {
+        display: block;
+        margin-top: 1rem;
+        font-weight: 600;
+        color: #212510;
+    }
+
+    .form-container input[type="number"],
+    button {
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+
+    button {
+        background-color: #527640;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        margin-top: 1.5rem;
+    }
+
+    button:hover {
+        background-color: #1A3315;
+    }
+
+    .result-box {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background-color: #e0f2f1;
+        border-radius: 8px;
+        font-weight: bold;
+        color: #1A3315;
+    }
+</style>
+
+<div class="form-container">
+    <h2>🧪 Model 3: Soil-Based Detection</h2>
+    <form method="POST">
+        <label for="nitrogen">Nitrogen (N)</label>
+        <input type="number" name="nitrogen" id="nitrogen" placeholder="e.g. 90" required>
+
+        <label for="phosphorus">Phosphorus (P)</label>
+        <input type="number" name="phosphorus" id="phosphorus" placeholder="e.g. 45" required>
+
+        <label for="potassium">Potassium (K)</label>
+        <input type="number" name="potassium" id="potassium" placeholder="e.g. 30" required>
+
+        <label for="ph">Soil pH Value</label>
+        <input type="number" name="ph" id="ph" step="0.1" placeholder="e.g. 6.5" required>
+
+        <label for="moisture">Moisture (%)</label>
+        <input type="number" name="moisture" id="moisture" placeholder="e.g. 20" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+    <div class="result-box">
+        <p>Prediction Result: {{ result }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
