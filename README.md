@@ -27,4 +27,26 @@ Cloud/Server: Ubuntu instance / Virtual Machine
 Authentication (optional): OAuth2
 Visualization: UML diagrams, Model graphs
 🗂️ Dataset Structure
-The project uses a customized folder structure:![image](https://github.com/user-attachments/assets/9e230ffd-45f3-484f-b2e6-6bd4cbd39e85)
+The project uses a customized folder structure:
+![image](https://github.com/user-attachments/assets/9e230ffd-45f3-484f-b2e6-6bd4cbd39e85)
+
+🧠 Model Architecture
+Input Layer: (128 x 128 x 3) RGB images
+Convolution Layers: 3 Conv2D + ReLU activation
+Pooling Layers: MaxPooling2D
+GlobalAveragePooling Layer: reduces overfitting
+Dense Layer: Fully connected layers
+Dropout: 0.5 rate to prevent overfitting
+Output Layer: softmax activation for multi-class classification
+The summary of model:
+![image](https://github.com/user-attachments/assets/8ca375a0-ec6c-4044-9d5e-d6225dd8ab0f)
+
+⚙️ How the System Works
+ 1. User uploads a plant image via the web application.
+ 2. The deep learning model predicts the disease class.
+ 3. Based on the disease, the system fetches the recommended fertilizer.
+ 4. The result (disease + fertilizer suggestion) is displayed back to the user.
+
+✅ Example:
+Input Image	Predicted Disease	Recommended Fertilizer
+Banana leaf	Sigatoka	Apply Potassium fertilizer
